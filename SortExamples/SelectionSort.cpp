@@ -14,13 +14,31 @@ void SelectionSort(std::vector<int> &arr)
         {
             if(arr[j]<arr[min])
             {
-                min=j;
+                min = j;
             }
         }
         std::swap(arr[i],arr[min]);
     }
 }
+void SelectionSortLS(std::vector<int> &arr)
+{
+    int x = arr.size(); 
+    for(int i=0;i < x-1;i++)
+    {
+        //assume that current position is largest
+        int max = i;
 
+        //go through unsorted to find actual maximum
+        for(int j = i+1;j < x;j++)
+        {
+            if(arr[j]>arr[max])
+            {
+                max = j;
+            }
+        }
+        std::swap(arr[i],arr[max]);
+    }
+}
 void PrintArray(std::vector<int> &arr)
 {
     for(int &val : arr)
@@ -35,6 +53,9 @@ int main()
     std::cout<<"Unsorted array : ";
     PrintArray(arr);
     SelectionSort(arr);
-    std::cout<<"Sorted array : ";
+    std::cout<<"Sorted array smallest to largest : ";
+    PrintArray(arr);
+    SelectionSortLS(arr);
+    std::cout<<"Sorted array largest to smallest : ";
     PrintArray(arr);
 }
